@@ -453,3 +453,698 @@ def es_primo(numero):
 
 #ejercicio 21
 
+
+def add(x, y):
+    return x + y
+
+
+def subtract(x, y):
+    return x - y
+
+
+def multiply(x, y):
+    return x * y
+
+
+def divide(x, y):
+    return x / y
+
+
+print("Select operation.")
+print("1.Add")
+print("2.Subtract")
+print("3.Multiply")
+print("4.Divide")
+
+while True:
+    
+    choice = input("Enter choice(1/2/3/4): ")
+
+    
+    if choice in ('1', '2', '3', '4'):
+        try:
+            num1 = float(input("Enter first number: "))
+            num2 = float(input("Enter second number: "))
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+            continue
+
+        if choice == '1':
+            print(num1, "+", num2, "=", add(num1, num2))
+
+        elif choice == '2':
+            print(num1, "-", num2, "=", subtract(num1, num2))
+
+        elif choice == '3':
+            print(num1, "*", num2, "=", multiply(num1, num2))
+
+        elif choice == '4':
+            print(num1, "/", num2, "=", divide(num1, num2))
+        
+        
+        next_calculation = input("Let's do next calculation? (yes/no): ")
+        if next_calculation == "no":
+          break
+    else:
+        print("Invalid Input")
+
+    #ejercicio 22
+
+
+
+print("=== MENÚ DE CONVERSIÓN DE UNIDADES ===")
+print("1) Convertir de Celsius a Fahrenheit")
+print("2) De kilómetros a millas")
+print("3) De kilogramos a libras")
+
+opcion = int(input("\nElige una opción (1-3): "))
+
+
+if opcion < 1 or opcion > 3:
+    print("❌ Error: Opción no válida. Debe ser 1, 2 o 3.")
+else:
+    
+    match opcion:
+        case 1:
+        
+            celsius = float(input("Ingresa la temperatura en Celsius: "))
+            fahrenheit = (celsius * 9/5) + 32
+            print(f"✅ {celsius}°C = {fahrenheit:.2f}°F")
+        
+        case 2:
+            
+            km = float(input("Ingresa la distancia en kilómetros: "))
+            if km < 0:
+                print("❌ Error: La distancia no puede ser negativa.")
+            else:
+                millas = km * 0.621371
+                print(f"✅ {km} km = {millas:.2f} millas")
+        
+        case 3:
+            
+            kg = float(input("Ingresa el peso en kilogramos: "))
+            if kg < 0:
+                print("❌ Error: El peso no puede ser negativo.")
+            else:
+                libras = kg * 2.20462
+                print(f"✅ {kg} kg = {libras:.2f} lb")
+
+#ejercicio 23                
+
+import re
+
+def es_valido(email):
+    patron = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    
+    return re.match(patron, email) is not None
+
+
+correos = ["hola@dominio.com", "usuario#dominio.com", "contacto@empresa.co.uk"]
+
+for correo in correos:
+    print(f"{correo}: {'Válido' if es_valido(correo) else 'Inválido'}")
+
+    #ejercicio 24
+
+
+import string
+import random
+
+length = int(input("Enter password length: "))
+
+print('''Choose character set for password from these : 
+         1. Digits
+         2. Letters
+         3. Special characters
+         4. Exit''')
+
+characterList = ""
+
+while(True):
+    choice = int(input("Pick a number "))
+    if(choice == 1):
+        characterList += string.digits
+    elif(choice == 2):
+        characterList += string.ascii_letters
+    elif(choice == 3):
+        characterList += string.punctuation
+    elif(choice == 4):
+        break
+    else:
+        print("Please pick a valid option!")
+
+password = []
+
+for i in range(length):
+  
+    randomchar = random.choice(characterList)
+    
+    password.append(randomchar)
+
+print("The random password is " + "".join(password))
+
+#ejercicio 25
+
+from datetime import date
+
+def calcular_edad(fecha_nacimiento):
+    hoy = date.today()
+    edad = hoy.year - fecha_nacimiento.year
+    if (hoy.month, hoy.day) < (fecha_nacimiento.month, fecha_nacimiento.day):
+        edad -= 1
+    return edad
+
+try:
+    año = int(input("Introduce tu año de nacimiento (AAAA): "))
+    mes = int(input("Introduce tu mes de nacimiento (MM): "))
+    dia = int(input("Introduce tu día de nacimiento (DD): "))
+    
+    fecha_nac = date(año, mes, dia)
+    print(f"Tienes {calcular_edad(fecha_nac)} años.")
+except ValueError:
+    print("Fecha no válida. Por favor, asegúrate de usar números correctos.")
+
+
+    #ejercicio 26
+
+    usuarios_registrados = {
+    "juan": "clave123",
+    "maria": "secreta456"
+}
+
+def login():
+    username = input("Usuario: ")
+    password = input("Contraseña: ")
+    
+    if username in usuarios_registrados and usuarios_registrados[username] == password:
+        print(f"¡Inicio de sesión exitoso! Bienvenido, {username}.")
+    else:
+        print("Error: Usuario o contraseña incorrectos.")
+
+login()
+
+
+#ejercicio 27
+
+"""
+JUEGO DE PIEDRA PAPEL O TIJERA
+"""
+namej1 = input("ingrese el nombre del primer jugador")
+namej2 = input("ingrese el nombre del segundo jugador")
+
+print("Elige una opción",
+      "1. Piedra",
+      "2. Papel",
+      "3. Tijera")
+
+opcj1 = int(input("ingresa tu opción jugador 1"))
+opcj2 = int(input("ingresa tu opcion jugador 2"))
+
+
+if opcj1 == 1 and opcj2 == 2:
+    print("el ganador es ", namej2)
+elif opcj1 == 1 and opcj2 == 3:
+    print("el ganador es", namej1)
+elif opcj1 == 2 and opcj2 == 1:
+    print("El ganador es ", namej1 )
+elif opcj1 == 2 and opcj2 == 3:
+    print("el ganador es ", namej2)
+elif opcj1 == 3 and opcj2 == 1:
+    print("el ganador es ", namej1)
+elif opcj1 == 3 and opcj2 == 2:
+    print("el ganador es ", namej1)
+elif opcj1 == opcj2:
+    print("Es un empate")
+
+
+#ejercicio 28
+
+def analizar_texto():
+    texto = input("Ingresa un texto: ").lower()
+    letras_input = input("Ingresa 3 letras separadas por espacio: ").lower()
+    letras = letras_input.split()
+
+    palabras = texto.split()
+    total_palabras = len(palabras)
+    total_caracteres = len(texto)
+
+    contador_letras = {letra: texto.count(letra) for letra in letras}
+
+    primera_palabra = palabras[0] if palabras else ""
+    ultima_palabra = palabras[-1] if palabras else ""
+    palabra_python = "python" in texto
+
+    print("\n--- REPORTE DE ANÁLISIS ---")
+    print(f"Total de palabras: {total_palabras}")
+    print(f"Total de caracteres: {total_caracteres}")
+    print(f"Frecuencia de las letras: {contador_letras}")
+    print(f"Primera palabra: '{primera_palabra}' | Última palabra: '{ultima_palabra}'")
+    print(f"¿Contiene la palabra 'python'?: {palabra_python}")
+
+analizar_texto()
+
+#ejercicio 29
+
+def menu():
+    """Muestra las opciones del menú."""
+    print("\n" + "="*30)
+    print("      LISTA DE COMPRAS")
+    print("="*30)
+    print("1. Ver lista")
+    print("2. Agregar artículo")
+    print("3. Eliminar artículo")
+    print("4. Salir")
+    print("="*30)
+
+def gestionar_lista():
+    """Lógica principal de la lista de compras."""
+    lista = []
+    
+    while True:
+        menu()
+        opcion = input("\nSelecciona una opción (1-4): ")
+
+        if opcion == '1':
+            if not lista:
+                print("\nTu lista está vacía.")
+            else:
+                print("\n--- TUS ARTÍCULOS ---")
+                for index, item in enumerate(lista, start=1):
+                    print(f"{index}. {item.capitalize()}")
+
+        elif opcion == '2':
+            articulo = input("\n¿Qué deseas agregar?: ").strip()
+            if articulo:
+                lista.append(articulo)
+                print(f"'{articulo}' ha sido agregado.")
+            else:
+                print("No ingresaste un nombre válido.")
+
+        elif opcion == '3':
+            if not lista:
+                print("\nNo hay artículos para eliminar.")
+            else:
+                print("\n--- TUS ARTÍCULOS ---")
+                for index, item in enumerate(lista, start=1):
+                    print(f"{index}. {item.capitalize()}")
+                
+                try:
+                    num_eliminar = int(input("\nNúmero del artículo a eliminar: "))
+                    if 1 <= num_eliminar <= len(lista):
+                        eliminado = lista.pop(num_eliminar - 1)
+                        print(f"'{eliminado.capitalize()}' ha sido eliminado.")
+                    else:
+                        print("Número fuera de rango.")
+                except ValueError:
+                    print("Por favor, ingresa un número válido.")
+
+        elif opcion == '4':
+            print("\n¡Gracias por usar la lista de compras! ¡Hasta luego!")
+            break
+        else:
+            print("\nOpción no válida. Intenta de nuevo (1-4).")
+
+if __name__ == "__main__":
+    gestionar_lista()
+
+
+#ejercicio 30
+
+def menu():
+    print("\n--- CAJERO AUTOMÁTICO ---")
+    print("1. Consultar saldo")
+    print("2. Depositar dinero")
+    print("3. Retirar dinero")
+    print("4. Salir")
+
+def cajero():
+    saldo = 1000.0  
+    
+    while True:
+        menu()
+        opcion = input("\nSeleccione una opción (1-4): ")
+        
+        if opcion == "1":
+            print(f"\nSu saldo actual es: ${saldo:.2f}")
+            
+        elif opcion == "2":
+            try:
+                monto = float(input("\nIngrese la cantidad a depositar: $"))
+                if monto > 0:
+                    saldo += monto
+                    print(f"¡Depósito exitoso! Su nuevo saldo es: ${saldo:.2f}")
+                else:
+                    print("Error: El monto debe ser mayor a cero.")
+            except ValueError:
+                print("Error: Por favor, ingrese un número válido.")
+                
+        elif opcion == "3":
+            try:
+                monto = float(input("\nIngrese la cantidad a retirar: $"))
+                if monto <= 0:
+                    print("Error: El monto debe ser mayor a cero.")
+                elif monto > saldo:
+                    print("Error: Fondos insuficientes.")
+                else:
+                    saldo -= monto
+                    print(f"¡Retiro exitoso! Su nuevo saldo es: ${saldo:.2f}")
+            except ValueError:
+                print("Error: Por favor, ingrese un número válido.")
+                
+        elif opcion == "4":
+            print("\nGracias por utilizar nuestros servicios. ¡Hasta luego!")
+            break
+            
+        else:
+            print("Opción no válida. Por favor, intente de nuevo.")
+
+
+
+#ejercicio 31
+
+class SistemaCalificaciones:
+    def __init__(self):
+        self.estudiantes = {}
+
+    def agregar_estudiante(self, nombre):
+        """Agrega un nuevo estudiante al sistema."""
+        if nombre in self.estudiantes:
+            print("El estudiante ya existe.")
+        else:
+            self.estudiantes[nombre] = []
+            print(f"Estudiante '{nombre}' agregado exitosamente.")
+
+    def agregar_calificacion(self, nombre, nota):
+        """Agrega una nota validando que esté entre 0 y 100."""
+        if nombre not in self.estudiantes:
+            print("Estudiante no encontrado.")
+            return
+
+        if 0 <= nota <= 100:
+            self.estudiantes[nombre].append(nota)
+            print(f"Nota {nota} agregada a {nombre}.")
+        else:
+            print("Error: La calificación debe estar entre 0 y 100.")
+
+    def calcular_promedio(self, nombre):
+        """Calcula el promedio de un estudiante específico."""
+        notas = self.estudiantes.get(nombre, [])
+        if not notas:
+            return 0.0
+        return sum(notas) / len(notas)
+
+    def obtener_letra(self, promedio):
+        """Asigna una letra basada en el promedio."""
+        if promedio >= 90: return 'A'
+        elif promedio >= 80: return 'B'
+        elif promedio >= 70: return 'C'
+        elif promedio >= 60: return 'D'
+        else: return 'F'
+
+    def generar_reporte_individual(self, nombre):
+        """Muestra las notas y el promedio de un estudiante."""
+        if nombre not in self.estudiantes or not self.estudiantes[nombre]:
+            print("No hay información suficiente de este estudiante.")
+            return
+
+        notas = self.estudiantes[nombre]
+        promedio = self.calcular_promedio(nombre)
+        letra = self.obtener_letra(promedio)
+
+        print(f"\n--- Reporte de {nombre} ---")
+        print(f"Notas: {notas}")
+        print(f"Promedio: {promedio:.2f}")
+        print(f"Calificación: {letra}")
+
+    def generar_reporte_general(self):
+        """Muestra el promedio de todos los estudiantes."""
+        if not self.estudiantes:
+            print("No hay estudiantes registrados.")
+            return
+
+        print("\n--- Reporte General de la Clase ---")
+        total_clase = 0
+        num_estudiantes = len(self.estudiantes)
+
+        for nombre, notas in self.estudiantes.items():
+            prom = self.calcular_promedio(nombre)
+            total_clase += prom
+            print(f"{nombre}: Promedio {prom:.2f} ({self.obtener_letra(prom)})")
+
+        promedio_clase = total_clase / num_estudiantes
+        print(f"\nPromedio general del grupo: {promedio_clase:.2f}")
+
+if __name__ == "__main__":
+    sistema = SistemaCalificaciones()
+
+    sistema.agregar_estudiante("camila serna")
+    sistema.agregar_estudiante("juan rua")
+
+    sistema.agregar_calificacion("camila serna", 95)
+    sistema.agregar_calificacion("camila serna", 88)
+    sistema.agregar_calificacion("camila serna", 92)
+
+    sistema.agregar_calificacion("juan rua", 75)
+    sistema.agregar_calificacion("juan rua", 80)
+    sistema.agregar_calificacion("juan rua", 68)
+
+    
+    sistema.generar_reporte_individual("camila serna")
+    sistema.generar_reporte_general()
+
+
+#ejercicio 32
+
+
+import random
+
+def obtener_palabra_secreta():
+    palabras = ['python', 'programacion', 'desarrollo', 'computadora', 'codigo', 'ia']
+    return random.choice(palabras).upper()
+
+def jugar():
+    palabra = obtener_palabra_secreta()
+    letras_adivinadas = []
+    intentos = 6
+    juego_terminado = False
+
+    print("¡Bienvenido al juego del Ahorcado!")
+    print(f"La palabra tiene {len(palabra)} letras.")
+
+    while not juego_terminado:
+        adivinanza = ""
+        for letra in palabra:
+            if letra in letras_adivinadas:
+                adivinanza += letra
+            else:
+                adivinanza += "_"
+        
+        print(f"\nPalabra: {adivinanza}")
+        print(f"Intentos restantes: {intentos}")
+        
+        intento = input("Ingresa una letra: ").upper()
+
+        if len(intento) != 1 or not intento.isalpha():
+            print("Por favor, ingresa solo una letra válida.")
+            continue
+        if intento in letras_adivinadas:
+            print("Ya habías ingresado esa letra. Intenta con otra.")
+            continue
+
+        letras_adivinadas.append(intento)
+
+        if intento in palabra:
+            print(f"¡Bien! La letra '{intento}' está en la palabra.")
+        else:
+            intentos -= 1
+            print(f"¡Oh no! La letra '{intento}' no está en la palabra.")
+
+        if "_" not in adivinanza:
+            juego_terminado = True
+            print(f"\n¡Felicidades! Has adivinado la palabra secreta: {palabra}")
+
+        if intentos == 0:
+            juego_terminado = True
+            print(f"\n¡Game Over! Te has quedado sin intentos. La palabra era: {palabra}")
+
+if __name__ == "__main__":
+    jugar()
+
+
+#ejercicio 33
+
+
+class Libro:
+    def __init__(self, titulo, autor, isbn):
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+        self.disponible = True
+
+    def __str__(self):
+        estado = "Disponible" if self.disponible else "Prestado"
+        return f"{self.titulo} - {self.autor} (ISBN: {self.isbn}) [{estado}]"
+
+
+class Usuario:
+    def __init__(self, nombre, id_usuario):
+        self.nombre = nombre
+        self.id_usuario = id_usuario
+        self.libros_prestados = []
+
+    def tomar_prestado(self, libro):
+        self.libros_prestados.append(libro)
+
+    def devolver(self, libro):
+        self.libros_prestados.remove(libro)
+
+
+class Biblioteca:
+    def __init__(self):
+        self.catalogo = []
+        self.usuarios = []
+
+    def agregar_libro(self, libro):
+        self.catalogo.append(libro)
+        print(f"Libro '{libro.titulo}' agregado.")
+
+    def registrar_usuario(self, usuario):
+        self.usuarios.append(usuario)
+        print(f"Usuario '{usuario.nombre}' registrado.")
+
+    def prestar_libro(self, isbn, id_usuario):
+        libro = next((l for l in self.catalogo if l.isbn == isbn), None)
+        usuario = next((u for u in self.usuarios if u.id_usuario == id_usuario), None)
+
+        if libro and usuario:
+            if libro.disponible:
+                libro.disponible = False
+                usuario. tomar_prestado(libro)
+                print(f"¡Éxito! '{libro.titulo}' prestado a {usuario.nombre}.")
+            else:
+                print("El libro ya está prestado.")
+        else:
+            print("Libro o usuario no encontrado.")
+
+    def devolver_libro(self, isbn, id_usuario):
+        libro = next((l for l in self.catalogo if l.isbn == isbn), None)
+        usuario = next((u for u in self.usuarios if u.id_usuario == id_usuario), None)
+
+        if libro and usuario and libro in usuario.libros_prestados:
+            libro.disponible = True
+            usuario.devolver(libro)
+            print(f"¡Éxito! '{libro.titulo}' devuelto a la biblioteca.")
+        else:
+            print("Registro de préstamo incorrecto.")
+
+    def mostrar_catalogo(self):
+        print("\n--- Catálogo de la Biblioteca ---")
+        for libro in self.catalogo:
+            print(libro)
+
+if __name__ == "__main__":
+    biblioteca = Biblioteca()
+
+    libro1 = Libro("Cien años de soledad", "Gabriel García Márquez", "978-8437604947")
+    libro2 = Libro("1984", "George Orwell", "978-8499890944")
+    biblioteca.agregar_libro(libro1)
+    biblioteca.agregar_libro(libro2)
+
+    usuario1 = Usuario("Ana Gómez", "U001")
+    biblioteca.registrar_usuario(usuario1)
+
+    biblioteca.prestar_libro("978-8437604947", "U001")
+
+    biblioteca.mostrar_catalogo()
+
+    biblioteca.devolver_libro("978-8437604947", "U001")
+
+
+#ejercicio 34
+
+
+import statistics
+
+datos = [10, 12, 23, 23, 16, 23, 21, 16, 30]
+
+media = statistics.mean(datos)
+mediana = statistics.median(datos)
+moda = statistics.mode(datos)
+desviacion_estandar = statistics.stdev(datos)
+varianza = statistics.variance(datos)
+
+# Mostrar resultados
+print("--- Estadísticas Básicas ---")
+print(f"Datos: {datos}")
+print(f"Media: {media:.2f}")
+print(f"Mediana: {mediana}")
+print(f"Moda: {moda}")
+print(f"Desviación Estándar: {desviacion_estandar:.2f}")
+print(f"Varianza: {varianza:.2f}")
+
+
+#ejercicio 35
+
+
+FILAS = 6
+COLUMNAS = 8
+
+sala = [['0' for _ in range(COLUMNAS)] for _ in range(FILAS)]
+
+def mostrar_sala():
+    print("\n--- PANTALLA ---")
+    print("  " + " ".join([str(i+1) for i in range(COLUMNAS)]))
+    for r in range(FILAS):
+        fila_str = " ".join(sala[r])
+        print(f"{r+1} {fila_str}")
+    print("-----------------\n")
+
+def reservar_asientos():
+    mostrar_sala()
+    try:
+        cantidad = int(input("¿Cuántos boletos deseas reservar? "))
+        total_pagar = cantidad * 12.00 
+        
+        for i in range(cantidad):
+            print(f"\nBoleto {i + 1}:")
+            fila = int(input(f"Selecciona la fila (1 al {FILAS}): ")) - 1
+            columna = int(input(f"Selecciona la butaca (1 al {COLUMNAS}): ")) - 1
+            
+            if 0 <= fila < FILAS and 0 <= columna < COLUMNAS:
+                if sala[fila][columna] == '0':
+                    sala[fila][columna] = 'X'
+                    print("¡Asiento reservado con éxito!")
+                else:
+                    print("Error: Este asiento ya está reservado. Intenta de nuevo.")
+                    return
+            else:
+                print("Error: Asiento fuera de rango. Intenta de nuevo.")
+                return
+                
+        print(f"\n¡Reserva completada! Total a pagar: ${total_pagar:.2f}")
+    
+    except ValueError:
+        print("Entrada inválida. Por favor, ingresa solo números.")
+
+while True:
+    print("=== CINE VIRTUAL ===")
+    print("1. Ver asientos disponibles")
+    print("2. Reservar boletos")
+    print("3. Salir")
+    opcion = input("Selecciona una opción (1-3): ")
+    
+    if opcion == '1':
+        mostrar_sala()
+    elif opcion == '2':
+        reservar_asientos()
+    elif opcion == '3':
+        print("Gracias por usar el sistema de reservas. ¡Hasta pronto!")
+        break
+    else:
+        print("Opción inválida, intenta de nuevo.")
+
+
+
+
+
+
