@@ -21,6 +21,7 @@ if __name__ == "__main__":
     sumar_hasta_cero()
 
 
+
     numero_secreto = 9
     numero_usuario = 0
     while numero_secreto != numero_usuario:
